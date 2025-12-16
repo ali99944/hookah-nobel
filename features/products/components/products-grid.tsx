@@ -19,7 +19,7 @@ function ProductCard({ product }: { product: Product }) {
 
   return (
     <Link href={`/products/${product.id}`} className="block group">
-      <div className="bg-card rounded-2xl p-3 relative hover:shadow-lg transition-shadow duration-300">
+      <div className="bg-card rounded-2xl overflow-hidden relative hover:shadow-lg transition-shadow duration-300">
         <div className="absolute top-2 right-2">
           <Badge className="bg-accent font-bold uppercase">{product.category.name}</Badge>
         </div>
@@ -27,10 +27,10 @@ function ProductCard({ product }: { product: Product }) {
         <div className="w-full flex justify-center items-center">
           <img
             src={product.image || "/placeholder.svg"}
-            className="h-32 group-hover:scale-105 transition-transform duration-300"
+            className="h-auto w-full object-cover  transition-transform duration-300"
           />
         </div>
-        <div className="flex justify-between items-end">
+        <div className="flex justify-between items-end p-3">
           <div className="flex flex-col">
             <p className="text-foreground">{product.name}</p>
             <p className="text-muted-foreground">{product.price}$</p>
@@ -110,7 +110,7 @@ const ProductsGrid = () => {
         </div>
       ) : (
         <>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6">
             {paginatedProducts.map((pr) => (
               <ProductCard product={pr} key={pr.id} />
             ))}

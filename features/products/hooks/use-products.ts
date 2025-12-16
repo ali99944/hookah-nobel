@@ -28,10 +28,10 @@ function useProducts() {
       name: "شيشة كريزمون كلاسيك",
       category: hookaCategory,
       gallery: [
-        { id: 1, source: "/images/pr.png" },
-        { id: 2, source: "/images/pr.png" },
+        { id: 1, source: "/images/products/p2.jpg" },
+        { id: 2, source: "/images/products/p2.jpg" },
       ],
-      image: "/images/pr.png",
+      image: "/images/products/p2.jpg",
       price: 450,
       description:
         "شيشة كريزمون الكلاسيكية بتصميم أنيق وعصري، مصنوعة من مواد عالية الجودة لضمان تجربة تدخين مثالية. تتميز بسهولة التنظيف والصيانة.",
@@ -48,8 +48,8 @@ function useProducts() {
       id: 2,
       name: "شيشة ألفا برو",
       category: hookaCategory,
-      gallery: [{ id: 3, source: "/images/pr.png" }],
-      image: "/images/pr.png",
+      gallery: [{ id: 3, source: "/images/products/p2.jpg" }],
+      image: "/images/products/p2.jpg",
       price: 550,
       description:
         "شيشة ألفا برو المصممة للمحترفين، بقاعدة زجاجية فاخرة وأنبوب من الكربون. توفر أداءً استثنائياً وكثافة دخان عالية.",
@@ -68,7 +68,7 @@ function useProducts() {
       name: "معسل الفاخر - نكهة التفاح المزدوج",
       category: tobaccoCategory,
       gallery: [],
-      image: "/images/box.png",
+      image: "/images/products/p2.jpg",
       price: 85,
       description:
         "معسل الفاخر بنكهة التفاح المزدوج الأصلية، معبأ بعناية فائقة لضمان النكهة الطازجة. مصنوع من أجود أنواع التبغ الطبيعي.",
@@ -86,7 +86,7 @@ function useProducts() {
       name: "معسل الفاخر - نكهة النعناع بالليمون",
       category: tobaccoCategory,
       gallery: [],
-      image: "/images/box.png",
+      image: "/images/products/p2.jpg",
       price: 85,
       description:
         "معسل منعش بنكهة النعناع والليمون، يوفر تجربة باردة ومنعشة. مثالي لعشاق النكهات الطبيعية والمنعشة.",
@@ -104,7 +104,7 @@ function useProducts() {
       name: "معسل الفاخر - نكهة التوت المشكل",
       category: tobaccoCategory,
       gallery: [],
-      image: "/images/box.png",
+      image: "/images/products/p2.jpg",
       price: 90,
       description:
         "مزيج رائع من نكهات التوت الطازجة، يجمع بين الفراولة والتوت الأزرق والتوت الأحمر. نكهة غنية ومميزة.",
@@ -122,7 +122,7 @@ function useProducts() {
       name: "فحم جوز الهند الطبيعي",
       category: coalsCategory,
       gallery: [],
-      image: "/images/smoke.png",
+      image: "/images/products/p2.jpg",
       price: 45,
       description:
         "فحم طبيعي 100% من قشور جوز الهند، خالٍ من المواد الكيميائية. يدوم طويلاً ويعطي حرارة متوازنة دون رائحة أو طعم.",
@@ -140,7 +140,7 @@ function useProducts() {
       name: "فحم سريع الاشتعال",
       category: coalsCategory,
       gallery: [],
-      image: "/images/smoke-2.png",
+      image: "/images/products/p2.jpg",
       price: 35,
       description:
         "فحم سريع الاشتعال، يصل للحرارة المثالية خلال دقائق معدودة. مثالي للاستخدام السريع والعملي.",
@@ -158,7 +158,7 @@ function useProducts() {
       name: "مبسم سيليكون ملون",
       category: accessoriesCategory,
       gallery: [],
-      image: "/images/pr.png",
+      image: "/images/products/p2.jpg",
       price: 15,
       description:
         "مبسم من السيليكون الطبي عالي الجودة، متوفر بألوان متعددة. سهل التنظيف وآمن للاستخدام الصحي.",
@@ -176,7 +176,7 @@ function useProducts() {
       name: "خرطوم شيشة سيليكون قابل للغسل",
       category: accessoriesCategory,
       gallery: [],
-      image: "/images/pr.png",
+      image: "/images/products/p2.jpg",
       price: 65,
       description:
         "خرطوم شيشة من السيليكون الفاخر، قابل للغسل بالكامل دون صدأ أو تلف. يوفر سحبة سلسة ومريحة.",
@@ -194,7 +194,7 @@ function useProducts() {
       name: "رأس شيشة فخار تقليدي",
       category: accessoriesCategory,
       gallery: [],
-      image: "/images/pr.png",
+      image: "/images/products/p2.jpg",
       price: 25,
       description:
         "رأس شيشة من الفخار المصنوع يدوياً، يوفر توزيعاً مثالياً للحرارة. تصميم تقليدي أصيل.",
@@ -212,7 +212,7 @@ function useProducts() {
       name: "شيشة ميني المحمولة",
       category: hookaCategory,
       gallery: [],
-      image: "/images/pr.png",
+      image: "/images/products/p2.jpg",
       price: 180,
       description:
         "شيشة صغيرة محمولة مثالية للسفر والرحلات، سهلة الحمل والتركيب. تأتي مع حقيبة حمل خاصة.",
