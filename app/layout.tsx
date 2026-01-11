@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import MainLayout from "@/components/layout";
 import FloatingWhatsapp from "@/components/widgets/floating-whatsapp";
+import { AppProviders } from "@/core/providers/app-providers";
 
 
 export const metadata: Metadata = {
@@ -19,10 +20,12 @@ export default function RootLayout({
       <body
         className={`antialiased bg-[#0c0c0c]`}
       >
-        <MainLayout>
-          {children}
-        </MainLayout>
-        <FloatingWhatsapp />
+        <AppProviders>
+          <MainLayout>
+            {children}
+          </MainLayout>
+          <FloatingWhatsapp />
+        </AppProviders>
       </body>
     </html>
   );

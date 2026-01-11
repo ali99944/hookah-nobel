@@ -6,11 +6,11 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import Input from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { useCart } from "@/core/hooks/use-cart"
-import { ArrowLeft, CreditCard, MapPin, User } from "lucide-react"
+import { ArrowLeft, CheckIcon, MapPin, User } from "lucide-react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useMemo, useState } from "react"
+import { useCart } from "@/features/cart/hooks/use-cart"
 
 export default function CheckoutPage() {
   const { items, clearCart } = useCart()
@@ -27,12 +27,11 @@ export default function CheckoutPage() {
   })
 
   const totals = useMemo(() => {
-    const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0)
-    const shipping = subtotal > 0 ? 10 : 0
-    const tax = subtotal * 0.05
-    const total = subtotal + shipping + tax
+    const subtotal = items.reduce((sum, item) => sum + item.product.price * item.quantity, 0)
+    const shipping = 0
+    const total = subtotal + shipping 
 
-    return { subtotal, shipping, tax, total }
+    return { subtotal, shipping, total }
   }, [items])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -68,7 +67,6 @@ export default function CheckoutPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-12">
-      <h1 className="text-4xl font-bold text-foreground mb-8">إتمام الطلب</h1>
 
       <form onSubmit={handleSubmit}>
         <div className="grid lg:grid-cols-3 gap-8">
@@ -89,7 +87,7 @@ export default function CheckoutPage() {
                   value={formData.fullName}
                   onChange={handleInputChange}
                   required
-                  className="bg-secondary"
+                  className="bg-white/10 placeholder:text-white/40"
                 />
                 <div className="grid md:grid-cols-2 gap-4">
                   <Input
@@ -99,7 +97,7 @@ export default function CheckoutPage() {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="bg-secondary"
+                    className="bg-white/10 placeholder:text-white/40"
                   />
                   <Input
                     name="phone"
@@ -108,7 +106,7 @@ export default function CheckoutPage() {
                     value={formData.phone}
                     onChange={handleInputChange}
                     required
-                    className="bg-secondary"
+                    className="bg-white/10 placeholder:text-white/40"
                   />
                 </div>
               </CardContent>
@@ -129,7 +127,7 @@ export default function CheckoutPage() {
                   value={formData.address}
                   onChange={handleInputChange}
                   required
-                  className="bg-secondary"
+                  className="bg-white/10 placeholder:text-white/40"
                 />
                 <div className="grid md:grid-cols-2 gap-4">
                   <Input
@@ -138,14 +136,14 @@ export default function CheckoutPage() {
                     value={formData.city}
                     onChange={handleInputChange}
                     required
-                    className="bg-secondary"
+                    className="bg-white/10 placeholder:text-white/40"
                   />
                   <Input
                     name="zipCode"
                     placeholder="الرمز البريدي"
                     value={formData.zipCode}
                     onChange={handleInputChange}
-                    className="bg-secondary"
+                    className="bg-white/10 placeholder:text-white/40"
                   />
                 </div>
                 <Textarea
@@ -153,42 +151,8 @@ export default function CheckoutPage() {
                   placeholder="ملاحظات إضافية (اختياري)"
                   value={formData.notes}
                   onChange={handleInputChange}
-                  className="bg-secondary min-h-24"
+                  className="bg-white/10 placeholder:text-white/40 text-white min-h-24"
                 />
-              </CardContent>
-            </Card>
-
-            {/* Payment Method */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <CreditCard className="w-5 h-5 text-primary" />
-                  طريقة الدفع
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <label className="flex items-center gap-3 p-4 border border-border rounded-lg cursor-pointer hover:bg-accent/20 transition-colors">
-                  <input
-                    type="radio"
-                    name="paymentMethod"
-                    value="cash"
-                    checked={formData.paymentMethod === "cash"}
-                    onChange={handleInputChange}
-                    className="w-4 h-4 accent-primary"
-                  />
-                  <span className="text-foreground font-medium">الدفع عند الاستلام</span>
-                </label>
-                <label className="flex items-center gap-3 p-4 border border-border rounded-lg cursor-pointer hover:bg-accent/20 transition-colors">
-                  <input
-                    type="radio"
-                    name="paymentMethod"
-                    value="card"
-                    checked={formData.paymentMethod === "card"}
-                    onChange={handleInputChange}
-                    className="w-4 h-4 accent-primary"
-                  />
-                  <span className="text-foreground font-medium">بطاقة ائتمان / مدى</span>
-                </label>
               </CardContent>
             </Card>
           </div>
@@ -206,16 +170,16 @@ export default function CheckoutPage() {
                     <div key={item.id} className="flex gap-3">
                       <div className="w-12 h-12 bg-accent rounded flex items-center justify-center shrink-0">
                         <img
-                          src={item.image || "/placeholder.svg"}
-                          alt={item.name}
+                          src={item.product.image || "/placeholder.svg"}
+                          alt={item.product.name}
                           className="w-10 h-10 object-contain"
                         />
                       </div>
                       <div className="flex-1">
-                        <p className="text-foreground text-sm font-medium">{item.name}</p>
+                        <p className="text-foreground text-sm font-medium">{item.product.name}</p>
                         <p className="text-muted-foreground text-xs">الكمية: {item.quantity}</p>
                       </div>
-                      <p className="text-primary font-bold text-sm">${(item.price * item.quantity).toFixed(2)}</p>
+                      <p className="text-primary font-bold text-sm">${(item.product.price * item.quantity).toFixed(2)}</p>
                     </div>
                   ))}
                 </div>
@@ -229,10 +193,6 @@ export default function CheckoutPage() {
                     <span>الشحن</span>
                     <span>${totals.shipping.toFixed(2)}</span>
                   </div>
-                  <div className="flex justify-between text-muted-foreground text-sm">
-                    <span>الضريبة</span>
-                    <span>${totals.tax.toFixed(2)}</span>
-                  </div>
                 </div>
 
                 <div className="border-t border-border pt-4">
@@ -242,16 +202,18 @@ export default function CheckoutPage() {
                   </div>
                 </div>
 
-                <Button type="submit" size="lg" className="w-full bg-primary text-black hover:bg-primary/90 font-bold">
-                  تأكيد الطلب
-                  <ArrowLeft className="w-5 h-5" />
-                </Button>
-
-                <Link href="/cart">
-                  <Button type="button" size="lg" variant="outline" className="w-full bg-transparent">
-                    العودة للسلة
+                <div className="flex items-center gap-2">
+                  <Button type="submit" className="flex-1 bg-primary text-black hover:bg-primary/90 font-bold">
+                    تأكيد الطلب
+                    <CheckIcon className="w-5 h-5" />
                   </Button>
-                </Link>
+
+                  <Link href="/cart" className="flex-1">
+                    <Button type="button" variant="accent" className="w-full">
+                      العودة للسلة
+                    </Button>
+                  </Link>
+                </div>
               </CardContent>
             </Card>
           </div>

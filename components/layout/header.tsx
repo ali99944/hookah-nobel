@@ -2,22 +2,22 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { Menu, X, ShoppingCart } from "lucide-react"
+import { Menu, X, ShoppingCart, Home, Users, MapPin, BoxIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { PromotionalBanner } from "./promotional-banners"
-import { useCart } from "@/core/hooks/use-cart"
+import { useCart } from "@/features/cart/hooks/use-cart"
 
 const navLinks = [
-  { href: "/", label: "الرئيسية" },
-  { href: "/products", label: "المنتجات" },
-  { href: "/about", label: "من نحن" },
-  { href: "/contact", label: "تواصل معنا" },
+  { href: "/", label: "الرئيسية", icon: Home },
+  { href: "/collections", label: "المجموعات", icon: BoxIcon },
+  { href: "/about", label: "من نحن", icon: Users },
+  { href: "/contact", label: "تواصل معنا", icon: MapPin },
 ]
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const { items } = useCart()
+  const { items, isLoading: is_cart_loading } = useCart()
 
   return (
     <div className="sticky top-0 left-0 right-0 z-50">
@@ -35,13 +35,14 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-10">
+          <div className="hidden md:flex items-center gap-4">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="font-body text-md tracking-wide text-muted-foreground hover:text-primary transition-colors"
+                className="font-body text-md tracking-wide text-muted-foreground hover:bg-accent hover:text-accent-foreground rounded-full py-1.5 px-3 transition-colors duration-300 flex items-center gap-2"
               >
+                <link.icon className="h-4 w-4" />
                 {link.label}
               </Link>
             ))}
@@ -51,9 +52,15 @@ export function Header() {
             <Link href={'/cart'}>
               <Button variant="ghost" size="icon" className="text-white hover:bg-accent relative">
                 <ShoppingCart className="h-5 w-5" />
-                <span className="absolute top-0 right-0 text-xs font-semibold bg-primary text-black rounded-full w-4 h-4">
-                {items.length}
-              </span>
+                {is_cart_loading ? (
+                  <span className="absolute top-0 right-0 text-xs font-semibold bg-primary text-black rounded-full w-4 h-4 animate-pulse">
+                    
+                  </span>
+                ) : (
+                  <span className="absolute top-0 right-0 text-xs font-semibold bg-primary text-black rounded-full w-4 h-4">
+                    {items.length}
+                  </span>
+                )}
               </Button>
             </Link>
             <Button className="bg-primary text-black hover:bg-primary/90">تصفح منتجاتنا</Button>
@@ -77,15 +84,29 @@ export function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="font-body text-foreground/60 hover:text-foreground transition-colors py-2"
+                  className="font-body text-foreground/60 hover:text-foreground transition-colors py-2 flex items-center gap-2"
                   onClick={() => setIsMenuOpen(false)}
                 >
+                  <link.icon className="h-5 w-5 mr-2" />
                   {link.label}
                 </Link>
               ))}
-              <Button>
-                تصفح منتجاتنا
-              </Button>
+              <div className="flex items-center gap-4">
+                <Link href={'/products'} className="flex-1">
+                  <Button className="w-full">
+                    تصفح منتجاتنا
+                  </Button>
+                </Link>
+                <Link href={'/cart'} className="flex-1">
+                  <Button variant="accent" className="w-full" >
+                    <ShoppingCart className="h-5 w-5" />
+                    <span className="absolute top-0 right-0 text-xs font-semibold bg-primary text-black rounded-full w-4 h-4">
+                    {items.length}
+                  </span>
+                  سلة المشتريات
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
         )}

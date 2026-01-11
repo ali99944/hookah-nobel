@@ -4,27 +4,26 @@ import { useState, useEffect } from 'react'
 
 const promotions = [
   {
-    text: "Free shipping on orders over $200 - Limited time offer"
+    text: "شحن لجميع المحافظات بكل ما تريد من منتجات أصلية 100% وخدمة عملاء مميزة",
+    color: "bg-accent text-accent-foreground"
   },
   {
-    text: "New Collection: Handcrafted Italian Leather - Shop Now"
+    text: "تشكيلة جديدة: نكهات فاخرة وإكسسوارات مميزة - تسوق الآن",
+    // color: "bg-success text-success-foreground"
+    color: "bg-accent text-accent-foreground"
   },
   {
-    text: "Exclusive: 15% off your first order with code WELCOME15"
-  },
-  {
-    text: "Artisan Spotlight: Meet our master craftsmen behind each piece"
+    text: "جودة مضمونة: منتجات أصلية 100% وخدمة عملاء مميزة",
+    // color: "bg-primary text-primary-foreground"
+    color: "bg-accent text-accent-foreground"
   }
 ]
 
 export function PromotionalBanner() {
   const [currentPromo, setCurrentPromo] = useState(0)
-
   const [isAnimating, setIsAnimating] = useState(false)
 
   useEffect(() => {
-
-
     const interval = setInterval(() => {
       setIsAnimating(true)
       setTimeout(() => {
@@ -36,14 +35,15 @@ export function PromotionalBanner() {
     return () => clearInterval(interval)
   }, [])
 
-
-
   return (
-    <div className={`bg-primary text-black py-2 px-4 relative overflow-hidden`}>
+    <div className={`py-2.5 px-4 relative overflow-hidden ${promotions[currentPromo].color}`} dir="rtl">
       <div className="max-w-7xl mx-auto flex items-center justify-center">
-        <div className={`text-md font-bold text-center transition-all duration-250 ${
-          isAnimating ? 'opacity-0 transform translate-y-2' : 'opacity-100 transform translate-y-0'
-        }`}>
+        <div 
+          className={`
+            text-sm font-bold text-center transition-all duration-300 ease-in-out font-cairo
+            ${isAnimating ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'}
+          `}
+        >
           {promotions[currentPromo].text}
         </div>
       </div>

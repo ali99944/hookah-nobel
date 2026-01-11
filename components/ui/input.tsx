@@ -31,7 +31,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             type={type}
             className={cn(
               "flex h-9 w-full rounded-full  bg-transparent py-2 text-sm transition-colors",
-              "placeholder:text-text-muted",
+              "placeholder:text-muted-foreground",
               // Conditional border colors
               hasError
                 ? "border-red-500 focus:border-primary focus:border-2"

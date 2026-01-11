@@ -5,18 +5,18 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { ShoppingCartIcon, ChevronRight, Minus, Plus } from "lucide-react"
-import { useCart } from "@/core/hooks/use-cart"
 import useProducts from "@/features/products/hooks/use-products"
 import Link from "next/link"
+import { useCart } from "@/features/cart/hooks/use-cart"
 
 export default function ProductDetailsPage() {
   const params = useParams()
   const router = useRouter()
-  const { products } = useProducts()
+  const { data } = useProducts()
   const { add } = useCart()
 
   const productId = Number.parseInt(params.id as string)
-  const product = products.find((p) => p.id === productId)
+  const product = (data?.data ?? []).find((p) => p.id === productId)
 
   const [selectedImage, setSelectedImage] = useState(0)
   const [quantity, setQuantity] = useState(1)

@@ -1,4 +1,8 @@
 export interface Category {
     id: number
     name: string
+    description?: string
+    slug: string
+    image: string
+    products_count?: number
 }
