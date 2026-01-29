@@ -9,6 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton"
 import { DangerDialog } from "@/components/ui/dialog" // Adjust path as needed
 import { useCart } from "@/features/cart/hooks/use-cart"
+import { getStorageLink } from "@/core/lib/storage"
 
 export default function CartPage() {
   const [itemToDelete, setItemToDelete] = useState<number | null>(null)
@@ -147,7 +148,7 @@ export default function CartPage() {
               <CardContent className="p-4">
                 <div className="flex gap-4">
                   <div className="w-24 h-24 bg-accent rounded-lg flex items-center justify-center shrink-0">
-                    <img src={item.product.image || "/placeholder.svg"} alt={item.product.name} className="w-20 h-20 object-contain" />
+                    <img src={getStorageLink(item.product.image) || "/placeholder.svg"} alt={item.product.name} className="w-20 h-20 object-contain" />
                   </div>
 
                   <div className="flex-1 flex flex-col justify-between">

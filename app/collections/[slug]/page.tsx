@@ -12,6 +12,7 @@ import { useCollections } from "@/features/categories/hooks/category.hook"
 import Input from "@/components/ui/input"
 import { useState } from "react"
 import { useCart } from "@/features/cart/hooks/use-cart"
+import { getStorageLink } from "@/core/lib/storage"
 
 function ProductCard({ product }: { product: Product }) {
   const { add } = useCart()
@@ -35,7 +36,7 @@ function ProductCard({ product }: { product: Product }) {
       <div className="bg-card rounded-2xl overflow-hidden relative hover:shadow-lg transition-shadow duration-300">
         <div className="w-full flex justify-center items-center relative">
           <img
-            src={product.image || "/images/product-placeholder.png"}
+            src={getStorageLink(product.image) || "/images/product-placeholder.png"}
             className="aspect-square w-full object-cover object-top"
             alt={product.name}
           />

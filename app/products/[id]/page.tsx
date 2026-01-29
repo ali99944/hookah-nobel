@@ -8,6 +8,7 @@ import { ShoppingCartIcon, ChevronRight, Minus, Plus } from "lucide-react"
 import useProducts from "@/features/products/hooks/use-products"
 import Link from "next/link"
 import { useCart } from "@/features/cart/hooks/use-cart"
+import { getStorageLink } from "@/core/lib/storage"
 
 export default function ProductDetailsPage() {
   const params = useParams()
@@ -62,7 +63,7 @@ export default function ProductDetailsPage() {
           <div className="space-y-4">
             <div className="bg-secondary rounded-3xl p-8 flex items-center justify-center relative overflow-hidden">
               <img
-                src={allImages[selectedImage] || "/placeholder.svg"}
+                src={getStorageLink(allImages[selectedImage]) || "/placeholder.svg"}
                 alt={product.name}
                 className="max-h-96 object-contain"
               />
@@ -79,7 +80,7 @@ export default function ProductDetailsPage() {
                     }`}
                   >
                     <img
-                      src={img || "/placeholder.svg"}
+                      src={getStorageLink(img) || "/placeholder.svg"}
                       alt={`${product.name} ${idx + 1}`}
                       className="w-20 h-20 object-contain"
                     />
@@ -162,7 +163,8 @@ export default function ProductDetailsPage() {
                 أضف إلى السلة
               </Button>
               <Button
-                variant="outline"
+                variant="secondary"
+                className="flex-1"
                 size="lg"
                 onClick={() => {
                   handleAddToCart()
@@ -170,7 +172,7 @@ export default function ProductDetailsPage() {
                 }}
                 disabled={product.stock === 0}
               >
-                اشتر الآن
+                العودة
               </Button>
             </div>
           </div>
