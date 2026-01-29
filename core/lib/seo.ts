@@ -25,10 +25,47 @@ export const constructMetadata = async (seo_key: SeoKey): Promise<Metadata> => {
         title: `${seo.page_name} - ${seo.title}`,
         description: seo.description,
         keywords: seo.keywords,
+        
         openGraph: {
             title: `${seo.page_name} - ${seo.title}`,
             description: seo.description,
             images: seo.og_image ? [seo.og_image] : ['/public/images/logo.png'],
         },
+
+        twitter: {
+            card: 'summary_large_image',
+            title: `${seo.page_name} - ${seo.title}`,
+            description: seo.description,
+            images: seo.og_image ? [seo.og_image] : ['/public/images/logo.png'],
+        },
+
+        robots: {
+            index: true,
+            follow: true,
+            nocache: true,
+            googleBot: {
+                index: true,
+                follow: true,
+                noimageindex: true,
+                'max-video-preview': -1,
+                'max-image-preview': 'large',
+                'max-snippet': -1,
+            },
+        },
+
+        icons: [
+            {
+                rel: 'icon',
+                type: 'image/png',
+                sizes: '32x32',
+                url: '/public/images/logo.png',
+            },
+            {
+                rel: 'icon',
+                type: 'image/png',
+                sizes: '16x16',
+                url: '/public/images/logo.png',
+            },
+        ],
     }
 }

@@ -8,7 +8,7 @@ import type { Product } from "@/features/products/types/product"
 import { Button } from "@/components/ui/button"
 import { useNotification } from "@/core/hooks/use-notification"
 import { ShoppingCartIcon } from "lucide-react"
-import { useCategories } from "@/features/categories/hooks/category.hook"
+import { useCollections } from "@/features/categories/hooks/category.hook"
 import Input from "@/components/ui/input"
 import { useState } from "react"
 import { useCart } from "@/features/cart/hooks/use-cart"
@@ -80,16 +80,16 @@ function LoadingProductSkeleton() {
 
 function CollectionDetailPage() {
   const { slug } = useParams()
-  const { data: categories = [], isFetching: is_categories_loading } = useCategories()
+  const { data: collections = [], isFetching: is_collections_loading } = useCollections()
   const { data: result } = useProducts()
   const allProducts = result?.data ?? []
 
-  const collection = categories.find((cat) => cat.slug === slug)
-  const products = collection ? allProducts.filter((p) => p.category.id === collection.id) : []
+  const collection = collections.find((cat) => cat.slug === slug)
+  const products = collection ? allProducts.filter((p) => p.collection.id === collection.id) : []
 
   const [searchTerm, setSearchTerm] = useState("")
 
-  if (is_categories_loading) {
+  if (is_collections_loading) {
     return (
       <div className="py-24 px-4 max-w-7xl mx-auto">
         {/* Header skeleton */}

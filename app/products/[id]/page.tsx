@@ -92,7 +92,7 @@ export default function ProductDetailsPage() {
           {/* Product Info */}
           <div className="space-y-6">
             <div>
-              <Badge className="bg-accent mb-3">{product.category.name}</Badge>
+              <Badge className="bg-accent mb-3">{product.collection.name}</Badge>
               <h1 className="text-xl lg:text-2xl font-bold text-primary">{product.name} - {product.price} LE</h1>
             </div>
 

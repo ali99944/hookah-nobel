@@ -26,6 +26,26 @@ export default function RootLayout({
           </MainLayout>
           <FloatingWhatsapp />
         </AppProviders>
+
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Preschool",
+              name: "مدرسة هوكاه نوبيل",
+              description:
+                "حضانة وتعليم مبكر تهتم بتنمية مهارات الأطفال في بيئة آمنة وممتعة.",
+              address: {
+                "@type": "PostalAddress",
+                addressCountry: "SA",
+              },
+              telephone: "+966 56 444 5555",
+              url: "https://hookahnobel.com",
+            }),
+          }}
+        />
       </body>
     </html>
   );

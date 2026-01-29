@@ -9,9 +9,9 @@ function useProducts() {
   })
 }
 
-export const useGetProductsByCategory = (category_id: number) => {
+export const useGetProductsByCollection = (collection_id: number) => {
     return useGetQuery<Product[]>({
-        url: `categories/${category_id}/products`,
+        url: `collections/${collection_id}/products`,
         key: ['products']
     })
 }

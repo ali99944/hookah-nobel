@@ -153,7 +153,7 @@ export default function CartPage() {
                   <div className="flex-1 flex flex-col justify-between">
                     <div>
                       <h3 className="text-foreground font-bold text-lg">{item.product.name}</h3>
-                      <p className="text-muted-foreground text-sm">{item.product.category?.name}</p>
+                      <p className="text-muted-foreground text-sm">{item.product.collection?.name}</p>
                     </div>
 
                     <div className="flex items-center justify-between">

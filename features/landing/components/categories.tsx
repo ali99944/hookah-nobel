@@ -2,16 +2,18 @@
 
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react" // Assuming you have lucide-react, standard in shadcn/ui
-import { useCategories } from "@/features/categories/hooks/category.hook"
-import { Category } from "@/features/categories/types/category"
+import { useCollections } from "@/features/categories/hooks/category.hook"
+import { Collection } from "@/features/categories/types/category"
 import { Button } from "@/components/ui/button" // Assuming you have a Button component
+import { getStorageLink } from "@/core/lib/storage"
+import { CollectionCard } from "@/features/categories/components/collection_card"
 
 function Collections() {
-  const { data: categories = [], isFetching: is_categories_loading } = useCategories({
+  const { data: collections = [], isFetching: is_collections_loading } = useCollections({
     limit: 5
   })
 
-  if (is_categories_loading) {
+  if (is_collections_loading) {
     return (
       <div className="py-24 px-4 max-w-7xl mx-auto">
         <div className="flex flex-col items-center space-y-2 mb-12 animate-pulse">
@@ -46,8 +48,8 @@ function Collections() {
 
       {/* Grid - 5 Columns on LG to fit the limit perfectly */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-12">
-        {categories.map((cat) => (
-          <CollectionCard key={cat.id} category={cat} />
+        {collections.map((cat) => (
+          <CollectionCard key={cat.id} collection={cat} />
         ))}
       </div>
 
@@ -64,28 +66,5 @@ function Collections() {
   )
 }
 
-
-
-function CollectionCard({ category }: { category: Category }) {
-  return (
-    <Link href={`/collections/${category.slug}`} className="group flex flex-col items-center gap-4">
-      {/* Image Container */}
-      <div className="relative w-full aspect-square overflow-hidden rounded-2xl border border-white/5 bg-white/5 shadow-sm transition-all duration-300">
-        <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300 z-10" />
-        
-        <img
-          src={category.image || "/images/category-placeholder-2.png"}
-          alt={category.name}
-          className="h-full w-full object-cover transition-transform duration-500"
-        />
-      </div>
-
-      {/* Title */}
-      <h3 className="text-foreground text-md font-bold group-hover:text-primary transition-colors duration-200 text-center">
-        {category.name}
-      </h3>
-    </Link>
-  )
-}
 
 export default Collections

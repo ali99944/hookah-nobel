@@ -1,4 +1,4 @@
-import type { Category } from "@/features/categories/types/category"
+import type { Collection } from "@/features/categories/types/category"
 
 export interface ProductGalleryImage {
   id: number
@@ -15,6 +15,6 @@ export interface Product {
   is_active?: boolean
   features?: Record<string, string> // Key-value pairs like { "الوزن": "1 كجم", "الارتفاع": "70 سم" }
 
-  category: Category
+  collection: Collection
   gallery: ProductGalleryImage[]
 }

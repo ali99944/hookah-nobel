@@ -1,7 +1,7 @@
 import { constructMetadata } from "@/core/lib/seo";
 import { CTASection } from "@/features/landing";
 import BenefitsSection from "@/features/landing/components/benefits-section";
-import Categories from "@/features/landing/components/categories";
+import Collections from "@/features/landing/components/categories";
 import HeroSection from "@/features/landing/components/hero-section";
 import { Metadata } from "next";
 
@@ -14,7 +14,7 @@ export default function Home() {
     <div>
       <HeroSection />
       <BenefitsSection />
-      <Categories />
+      <Collections />
       <CTASection />
     </div>
   );

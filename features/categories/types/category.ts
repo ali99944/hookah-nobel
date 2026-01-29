@@ -1,4 +1,4 @@
-export interface Category {
+export interface Collection {
     id: number
     name: string
     description?: string

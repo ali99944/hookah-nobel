@@ -1,15 +1,15 @@
 import { useGetQuery } from "@/core/hooks/queries-actions"
-import { Category } from "../types/category"
+import { Collection } from "../types/category"
 import { RequestFilter } from "@/core/types/request_filter"
 
-export const useCategories = (filter?: RequestFilter) => {
-    let url: string = 'categories'
+export const useCollections = (filter?: RequestFilter) => {
+    let url: string = 'collections'
 
     if(filter?.limit) {
-        url = `categories?limit=${filter?.limit}`
+        url = `collections?limit=${filter?.limit}`
     }
 
-    return useGetQuery<Category[]>({
-        url, key: ['categories']
+    return useGetQuery<Collection[]>({
+        url, key: ['collections']
     })
 }
