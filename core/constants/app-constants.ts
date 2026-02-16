@@ -3,7 +3,7 @@ const AppConstants = Object.freeze({
     // storage_url: 'http://localhost:8000',
 
     api_url: 'https://system.shopaiklopaik.com/api',
-    storage_url: 'https://system.shopaiklopaik.com/storage',
+    storage_url: 'https://system.shopaiklopaik.com',
 })
 
 export default AppConstants
