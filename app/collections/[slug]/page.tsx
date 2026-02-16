@@ -36,7 +36,7 @@ function ProductCard({ product }: { product: Product }) {
       <div className="bg-card rounded-2xl overflow-hidden relative hover:shadow-lg transition-shadow duration-300">
         <div className="w-full flex justify-center items-center relative">
           <img
-            src={getStorageLink(product.image) || "/images/product-placeholder.png"}
+            src={getStorageLink(product.cover_image) || "/images/product-placeholder.png"}
             className="aspect-square w-full object-cover object-top"
             alt={product.name}
           />

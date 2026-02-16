@@ -8,7 +8,7 @@ export interface ProductGalleryImage {
 export interface Product {
   id: number
   name: string
-  image: string
+  cover_image: string
   price: number
   description?: string
   stock?: number

@@ -74,7 +74,7 @@ interface CartProps {
 }
 
 export const useCart = (data?: CartProps) => {
-  const { data: cartData, isLoading } = useGetCart();
+  const { data: cartData, isLoading, refetch } = useGetCart();
   
   const addMutation = useAddToCart();
   const updateMutation = useUpdateCartQuantity(data?.update_cart_item_id);
@@ -90,7 +90,6 @@ export const useCart = (data?: CartProps) => {
 
     if (existingItem) {
       updateMutation.mutate({
-        product_id: product.id,
         quantity: existingItem.quantity + quantity,
       });
     } else {
@@ -99,17 +98,22 @@ export const useCart = (data?: CartProps) => {
         quantity: quantity,
       });
     }
+
+
+    refetch()
   };
 
   // Helper: Remove Logic
   const removeItem = () => {
     removeMutation.mutate({}) 
+    refetch()
   };
 
   // Helper: Update Logic
   const updateQuantity = (productId: number, quantity: number) => {
     if (quantity < 1) return;
     updateMutation.mutate({ product_id: productId, quantity });
+    refetch()
   };
 
   return {

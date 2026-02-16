@@ -34,7 +34,7 @@ export default function ProductDetailsPage() {
     )
   }
 
-  const allImages = [product.image, ...product.gallery.map((g) => g.source)]
+  const allImages = [product.cover_image, ...product.gallery.map((g) => g.source)]
 
   const handleAddToCart = () => {
     for (let i = 0; i < quantity; i++) {

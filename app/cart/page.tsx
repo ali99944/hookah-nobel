@@ -13,8 +13,11 @@ import { getStorageLink } from "@/core/lib/storage"
 
 export default function CartPage() {
   const [itemToDelete, setItemToDelete] = useState<number | null>(null)
+  const [update_cart_item_id, setUpdateCartItemId] = useState<number | null>(null)
+
   const { items, removeItem, updateQuantity, isLoading, clearCart, isMutating } = useCart({
-    delete_cart_item_id: itemToDelete as number | undefined
+    delete_cart_item_id: itemToDelete as number | undefined,
+    update_cart_item_id: update_cart_item_id as number | undefined,
   })
 
   // --- LOCAL STATE FOR DIALOGS ---
@@ -39,7 +42,7 @@ export default function CartPage() {
   const handleClearCart = () => {
     clearCart()
     setIsClearCartOpen(false)
-  }
+  }  
 
   // --- LOADING VIEW ---
   if (isLoading) {
@@ -148,7 +151,7 @@ export default function CartPage() {
               <CardContent className="p-4">
                 <div className="flex gap-4">
                   <div className="w-24 h-24 bg-accent rounded-lg flex items-center justify-center shrink-0">
-                    <img src={getStorageLink(item.product.image) || "/placeholder.svg"} alt={item.product.name} className="w-20 h-20 object-contain" />
+                    <img src={getStorageLink(item.product.cover_image) || "/placeholder.svg"} alt={item.product.name} className="w-20 h-20 object-cover" />
                   </div>
 
                   <div className="flex-1 flex flex-col justify-between">
@@ -162,7 +165,10 @@ export default function CartPage() {
                         <Button
                           size="icon-sm"
                           variant="accent"
-                          onClick={() => updateQuantity(item.product_id, Math.max(1, item.quantity - 1))}
+                          onClick={() => {
+                            setUpdateCartItemId(item.id)
+                            updateQuantity(item.id, item.quantity - 1)
+                          }}
                           disabled={isMutating}
                           className="rounded-full"
                         >
@@ -172,7 +178,10 @@ export default function CartPage() {
                         <Button
                           size="icon-sm"
                           variant="accent"
-                          onClick={() => updateQuantity(item.product_id, item.quantity + 1)}
+                          onClick={() => {
+                            setUpdateCartItemId(item.id)
+                            updateQuantity(item.id, item.quantity + 1)
+                          }}
                           disabled={isMutating}
                           className="rounded-full"
                         >
