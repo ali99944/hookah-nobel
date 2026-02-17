@@ -45,7 +45,7 @@ function TrackOrderContent() {
   const [codeInput, setCodeInput] = useState(initialCode);
   const [submittedCode, setSubmittedCode] = useState(initialCode);
   const { data, isLoading, error, isFetching } = useTrackOrder(submittedCode);
-  const order = data?.data as Order | undefined;
+  const order = data as unknown as Order | undefined;
 
   useEffect(() => {
     if (initialCode) {
