@@ -14,7 +14,7 @@ function FloatingWhatsapp() {
   return (
     <>
         <div className="fixed bottom-4 right-4">
-            <Link href={`wa.me/${settings?.contact_info.whatsapp_number}`} target="_blank">
+            <Link href={`https://wa.me/${settings?.contact_info.whatsapp_number}`} target="_blank">
                 <div className="bg-success hover:bg-success/80 rounded-full p-3 cursor-pointer transition-colors duration-300">
                     <MessageCircle />
                 </div>
