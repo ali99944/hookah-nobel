@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { useSettings } from "@/features/settings/hooks/use-settings"
-import { Sparkles, ArrowLeft, PhoneCall } from "lucide-react"
+import { Sparkles, PhoneCall } from "lucide-react"
 import Link from "next/link"
 
 function HeroSection() {
@@ -73,10 +73,12 @@ function HeroSection() {
             </p>
 
             <div className="flex flex-wrap gap-4 justify-center items-center">
-              <Button size="lg" className="bg-success hover:bg-success/80 px-8">
-                تواصل معنا
-                <PhoneCall className="mr-2 h-5 w-5" />
-              </Button>
+              <Link href={`tel:${settings?.contact_info.primary_phone}`}>
+                <Button size="lg" className="bg-success hover:bg-success/80 px-8">
+                  تواصل معنا
+                  <PhoneCall className="mr-2 h-5 w-5" />
+                </Button>
+              </Link>
               <Link href="/products">
                 <Button size="lg" variant="accent" className=" px-8">
                   تصفح المنتجات
