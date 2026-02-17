@@ -3,7 +3,7 @@ import type { Product } from "../types/product"
 import { useGetQuery } from "@/core/hooks/queries-actions"
 
 function useProducts() {
-  return useGetQuery<WithPagination<Product[]>>({
+  return useGetQuery<Product[]>({
     url: "products",
     key: ["products"],
   })

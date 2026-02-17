@@ -82,11 +82,16 @@ function LoadingProductSkeleton() {
 function CollectionDetailPage() {
   const { slug } = useParams()
   const { data: collections = [], isFetching: is_collections_loading } = useCollections()
-  const { data: result } = useProducts()
-  const allProducts = result?.data ?? []
+  const { data: allProducts = [] } = useProducts()
 
-  const collection = collections.find((cat) => cat.slug === slug)
-  const products = collection ? allProducts.filter((p) => p.collection.id === collection.id) : []
+  const collection = collections.find((cat) => cat.slug == slug)
+  const products = collection ? allProducts.filter(
+      (p) => {
+          console.log(p.collection_id)
+          console.log(p.collection.id)
+          return p.collection_id == collection.id
+      }
+  ) : []
 
   const [searchTerm, setSearchTerm] = useState("")
 
