@@ -2,19 +2,27 @@ import type { Collection } from "@/features/categories/types/category"
 
 export interface ProductGalleryImage {
   id: number
-  source: string
+  source?: string
+  url?: string
+}
+
+export interface ProductKeyValueItem {
+  id?: number
+  key: string
+  value: string
 }
 
 export interface Product {
   id: number
   name: string
-  cover_image: string
+  cover_image: string | null
   price: number
-  description?: string
-  stock?: number
+  description?: string | null
+  status?: string
   is_active?: boolean
-  features?: Record<string, string> // Key-value pairs like { "الوزن": "1 كجم", "الارتفاع": "70 سم" }
-
+  collection_id?: number
+  attributes?: ProductKeyValueItem[] | Record<string, string>
+  features?: ProductKeyValueItem[] | Record<string, string>
   collection: Collection
   gallery: ProductGalleryImage[]
 }

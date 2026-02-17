@@ -11,7 +11,7 @@ export interface Seo {
   updated_at: string
 }
 
-type SeoKey = 'home' | 'collections' | 'cart' | 'checkout' | 'contact' | 'about'
+type SeoKey = 'home' | 'collections' | 'cart' | 'checkout' | 'contact' | 'about' | 'track_order'
 
 const getSeoData = async (key: SeoKey): Promise<Seo> => {
     const response = await axios.get<Seo>(`${AppConstants.api_url}/seos/${key}`)
