@@ -25,7 +25,7 @@ export default function RootLayout({
       >
         <AppProviders>
           <MainLayout>
-            {children}
+        {children}
           </MainLayout>
           <FloatingWhatsapp />
         </AppProviders>
@@ -34,19 +34,19 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Preschool",
-              name: "مدرسة هوكاه نوبيل",
-              description:
-                "حضانة وتعليم مبكر تهتم بتنمية مهارات الأطفال في بيئة آمنة وممتعة.",
-              address: {
-                "@type": "PostalAddress",
-                addressCountry: "SA",
-              },
-              telephone: "+966 56 444 5555",
-              url: "https://hookahnobel.com",
-            }),
+        __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Preschool",
+          name: "Hooka Nobel",
+          description:
+            "Premium shisha and premium lounge experience.",
+          address: {
+            "@type": "PostalAddress",
+            addressCountry: "EG",
+          },
+          telephone: "+201022518050",
+          url: "https://shishanobel.com",
+        }),
           }}
         />
       </body>

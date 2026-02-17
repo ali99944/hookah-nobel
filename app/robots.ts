@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    host: 'https://hookah-nobel.vercel.app',
-    sitemap: 'https://hookah-nobel.vercel.app/sitemap.xml',
+    host: 'https://shishanobel.com',
+    sitemap: 'https://shishanobel.com/sitemap.xml',
   };
 }
